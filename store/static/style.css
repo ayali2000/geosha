@@ -1,0 +1,21 @@
+#proimage{
+    object-fit: cover;
+}
+
+#prof{
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+#scroll{
+    height: 100vh;
+    overflow: scroll;
+    overflow-y:scroll;
+    overflow-x: hidden;
+
+
+}
+
+#aside{
+    height: 100vh;
+}

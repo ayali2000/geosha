@@ -1,0 +1,58 @@
+{% extends 'partials/base.html' %}
+{% load crispy_forms_tags%}
+{%block content%}
+
+{% include "partials/nav.html" %}
+{%if messages%}
+{%for message in messages%}
+<div class='alert alert-info'>
+    {{message}}
+</div>
+{%endfor%}
+{%endif%}
+<div class='container'>
+    <div class='row my-3 row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-2'>
+        <div class='col d-none d-lg-block'>
+            <div class="card">
+                <img src="{{item.image.url}}" class="card-img-top w-100 d-none d-lg-block d-md-block" alt="item" id='proimage' height='200'>
+                <img src="{{item.image.url}}" class="card-img-top w-100 d-block d-lg-none d-md-none" alt="item" id='proimage' height='300'>
+                <div class="card-body">
+                  <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class='col'>
+            <div class="card">
+                <img src="{{item.image.url}}" class="card-img-top w-100 d-none d-lg-block d-md-block" alt="item" id='proimage' height='200'>
+                <img src="{{item.image.url}}" class="card-img-top w-100 d-block d-lg-none d-md-none" alt="item" id='proimage' height='300'>
+                <div class="card-body">
+                  <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class='col'>
+            <div class="car">
+                <form class="" method="POST">
+                    <div class='form-group'>
+                    {% csrf_token %}
+                      {{ form.phone_number}}<br>
+                      {{ form.customer_name}}<br>
+                      {{ form.quantity}}<br>
+                      {{ form.Address}}
+                      <button class="btn btn-outline-success form-control mt-2"type="submit">Order</button>
+                    </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col mt-5'>
+            <center>
+                <h2 class=''>Hello world I love coding Hello world I love coding Hello world I love coding</h2>
+                <h3>Hello world I love coding Hello world I love coding</h3>
+                <h5>Hello world I love coding</h5>
+            </center>
+        </div>
+    </div>
+</div>
+{%endblock%}

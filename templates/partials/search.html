@@ -1,0 +1,5 @@
+<form class="d-flex" method="GET" action='.'>
+    {% csrf_token %}
+      <input class="form-control me-2" type="text" name='q' placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" value="{{query|escape}}"type="submit">Search</button>
+</form>

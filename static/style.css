@@ -1,0 +1,13 @@
+#proimage{
+    object-fit: cover;
+}
+
+#prof{
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+#aside{
+    height: 100vh;
+    
+}

@@ -1,0 +1,55 @@
+{% extends 'partials/base.html' %}
+{%load crispy_forms_tags%}
+{%block content%}
+{% include "partials/nav1.html" %}
+<div class='container'>
+    <div class= 'row mb-5 mt-5'>
+        <div class= 'card col-lg-8 offset-lg-2 mb-3 pb-3'><br>
+            <center>
+            <h1>{{d_quest.user}}</h1>
+            </center>
+            <div class= 'col mt-2'> 
+            {{d_quest.question}} 
+            </div><hr>
+            <div class= 'col offset-lg-1 col-lg-11'> 
+                {%for i in ans%}
+                <div class='row'>
+                <div class='col-2 col-lg-1 '>
+                    <img class='' src="/media/prof.jpg" width='40' height='40' id='prof'>
+                </div>
+                <div class='col-10 col-lg-11'>
+                    <div class='bg-light mb-2 p-2'>
+                    <strong>{{i.user}}</strong><br>
+                    {{i.ans}}
+                    </div>
+                </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+        {%if request.user.is_authenticated%}
+        <form method = "POST" class='d-none d-lg-block col-8 offset-2'>
+            {% csrf_token %}
+            <div class="input-group mb-1">
+                <input type="text" class="form-control" name='ans' placeholder="Write a comment" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <span class="input-group-text" id="basic-addon2">
+                    <button class="" value={{ans}} type="submit">
+                    <svg focusable="false" width="24" height="24" viewBox="0 0 24 24" class=" NMm5M hhikbc"><path d="M2 3v18l20-9L2 3zm2 11l9-2-9-2V6.09L17.13 12 4 17.91V14z"></path></svg>
+                    </button>            
+                </span>
+            </div>
+        </form>
+        <form method = "POST" class='d-lg-none'>
+            {% csrf_token %}
+            <div class="input-group mb-1 fixed-bottom">
+                <input type="text" class="form-control" name='ans' placeholder="Write a comment" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <span class="input-group-text" id="basic-addon2">
+                    <button class="" value={{ans}} type="submit">
+                    <svg focusable="false" width="24" height="24" viewBox="0 0 24 24" class=" NMm5M hhikbc"><path d="M2 3v18l20-9L2 3zm2 11l9-2-9-2V6.09L17.13 12 4 17.91V14z"></path></svg>
+                    </button>            
+                </span>
+            </div>
+        </form>
+        {%endif%}
+    </div>
+{%endblock%}

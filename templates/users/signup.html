@@ -1,0 +1,39 @@
+{% extends 'partials/base.html' %}
+{%load crispy_forms_tags%}
+{%block content%}
+{% include "partials/nav1.html" %}
+<main class = 'container'>
+    {%if messages%}
+    {%for message in messages%}
+    <div class='alert alert-info mt-2 col-lg-4 d-block d-lg-none d-md-none'>
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    <div class='row'>
+        <div class='col col-lg-4'>
+            <form method="POST">
+                <div class='car form-group col mt-4'>
+                    <center>
+                    <h1>Sign Up Here</h1>
+                    </center>
+                    <hr>
+                    {%csrf_token%}
+                    {{ frm }}
+                    <button class="btn btn-outline-success form-control mt-2"type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class='col-lg-8  d-none d-lg-block d-md-block'>
+            {%if messages%}
+            {%for message in messages%}
+            <br><br><br><br><br>
+            <div class='alert alert-info mt-5 col-4'>
+                {{message}}
+            </div>
+            {%endfor%}
+            {%endif%}
+        </div>
+    <div>
+<main>
+{%endblock%}

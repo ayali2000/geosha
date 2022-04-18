@@ -1,0 +1,88 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{%block content%}
+<main class='container-fluid'>
+    <div class='row'>
+        <div class='col col-1 d-none d-lg-block d-md-block fixed-top mt-5' id='aside'>
+            <aside>
+                <center><br><br>
+                <img class='mt-5' src="media/prof.jpg" width='60' height='60' id='prof'><br><br>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
+                    <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z"/>
+                </svg><br>
+                <small>home</small><br><br>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
+                    <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
+                    <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
+                </svg><br><small>Promo...</small><br><br>
+                </center>
+            </aside>
+        </div>
+        <div class='col-lg-11 offset-lg-1 bg-light' id=''>
+            {% include "partials/nav.html" %}
+            <div class='row row-cols-2 row-cols-lg-5 row-cols-md-3 row-cols-sm-3' >
+                {%if not query%}
+                {%for i in prods%}
+                <div class='col mt-3'> 
+                    <div class="card bg-white">
+                        <a href="{% url 'order' i.pk %}" style='text-decoration:none'>
+                        <img src="{{i.image.url}}" class="card-img-top w-100 d-none d-lg-block d-md-block" alt="item" id='proimage' height='200'>
+                        <img src="{{i.image.url}}" class="card-img-top w-100 d-block d-lg-none d-md-none" alt="item" id='proimage' height='150'>
+                        <div class="card-body">
+                            <div class='row'>
+                                <div class='col'>
+                                    <p class="card-text text-dark"><strong>{{i.productname}}</strong></p>
+                                </div>
+                                <div class='col'>
+                                    <p class="card-text text-dark"><small><small><strong>GHS</strong> {{i.price}}</small></small></p>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                {%endfor%}
+                {% elif query %}
+                    {%if results%}
+                        {%for r in results%}
+                        <div class='col mt-3'> 
+                            <div class="card bg-white">
+                                <a href="{% url 'order' r.pk %}" style='text-decoration:none'>
+                                <img src="{{r.image.url}}" class="card-img-top w-100 d-none d-lg-block d-md-block" alt="item" id='proimage' height='200'>
+                                <img src="{{r.image.url}}" class="card-img-top w-100 d-block d-lg-none d-md-none" alt="item" id='proimage' height='150'>
+                                <div class="card-body">
+                                    <div class='row'>
+                                        <div class='col'>
+                                            <p class="card-text text-dark"><strong>{{r.productname}}</strong></p>
+                                        </div>
+                                        <div class='col'>
+                                            <p class="card-text text-dark"><small><small><strong>GHS</strong> {{r.price}}</small></small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                        {%endfor%}
+                    {%else%}
+                    <h2>no results found</h2>
+                    {%endif%}
+                {%endif%}
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination mt-3">
+                  <li class="page-item"><a class="page-link" href="?pg=1"><<<</a></li>
+                  {%if prods.has_previous%}
+                  <li class="page-item"><a class="page-link" href="?pg={{prods.previous_page_number}}">{{prods.previous_page_number}}</a></li>
+                  {%endif%}
+                  <li class="page-item"><a class="page-link" href="?pg={{prods.number}}">{{prods.number}}</a></li>
+                  {% if prods.has_next %}
+                  <li class="page-item"><a class="page-link" href="?pg={{prods.next_page_number}}">{{prods.next_page_number}}</a></li>
+                  {%endif%}
+                  <li class="page-item"><a class="page-link" href="?pg={{prods.paginator.num_pages}}">>>></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</main>
+{%endblock%}
